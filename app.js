@@ -4,7 +4,7 @@ var exp = express();
 exp.use(express.static(__dirname + '/www'));
 exp.get('/', function (req, res) {
     console.log("Réponse à un client");
-    res.sendFile(__dirname + '/www/index.html');
+    res.sendFile(__dirname + '/www/textchat.html');
 });
 exp.use(function (err, req, res, next) {
     console.error(err.stack);
@@ -23,5 +23,23 @@ exp.ws('/echo', function (ws, req) {
         console.log('Deconnexion WebSocket %s sur le port %s', req.connection.remoteAddress, req.connection.remotePort);
     });
 });
+
+/*  ****************** Broadcast clients WebSocket  **************   */
+var aWss = expressWs.getWss('/echo'); 
+var WebSocket = require('ws');
+aWss.broadcast = function broadcast(data) {
+    console.log("Broadcast aux clients navigateur : %s", data);
+    aWss.clients.forEach(function each(client) {
+        if (client.readyState == WebSocket.OPEN) {
+            client.send(data, function ack(error) {
+                console.log("    -  %s-%s", client._socket.remoteAddress,
+                    client._socket.remotePort);
+                if (error) {
+                    console.log('ERREUR websocket broadcast : %s', error.toString());
+                }
+            });
+        }
+    });
+}; 
 
 exp.listen(port, function () { console.log('Serveur en ecoute'); });
