@@ -1,4 +1,4 @@
-var ipServeur = location.hostname;
+/* var ipServeur = location.hostname;
 var ws;
 window.onload = function () {
     if (TesterLaCompatibilite()) {
@@ -37,4 +37,4 @@ exp.ws('/echo', function (ws, req) {
             req.connection.remoteAddress,
             req.connection.remotePort);
     });
-});
+}); */
