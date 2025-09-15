@@ -1,3 +1,16 @@
+class CQr {
+    constructor() {
+        this.question = '?';
+        this.bonneReponse = 0;
+    }
+    GetRandomInt(max) { return Math.floor(Math.random() * Math.floor(max)); }
+    NouvelleQuestion() { ... }
+    TraiterReponse(wsClient, message) { ... }
+}
+var jeuxQr = new CQr();
+
+ws.on('message', jeuxQr.TraiterReponse.bind(jeuxQr));
+
 var question = '?';
 var bonneReponse = 0;
 
