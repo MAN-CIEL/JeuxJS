@@ -42,4 +42,7 @@ aWss.broadcast = function broadcast(data) {
     });
 }; 
 
+var Cjeuxqr = require('./jeuxqr.js');
+var jeuxQr = new Cjeuxqr();
+
 exp.listen(port, function () { console.log('Serveur en ecoute'); });

@@ -103,3 +103,6 @@ ws.send(JSON.stringify({ nom: document.getElementById('nom').value, reponse: doc
 var mess = JSON.parse(message);
 
 document.getElementById('resultats').textContent = JSON.stringify(mess.joueurs);
+
+ws.on('close', function (...) { jeuxQr.Deconnecter(ws); });
+if (indexjoueur == -1) { ... } else { /* Actualiser ws ou refuser */ }
