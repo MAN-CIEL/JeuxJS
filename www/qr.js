@@ -58,4 +58,16 @@ exp.ws('/qr', function (ws, req) {
         }
     }
 
+    function NouvelleQuestion() {
+        // Générer un entier aléatoire en base 10 (ex : entre 0 et 255)
+        var value = this.GetRandomInt(256);
+        // Générer la chaîne binaire (ex : '11001001')
+        var binaryStr = value.toString(2).padStart(8, '0');
+        // Afficher la question sous forme de conversion base 2 -> base 10
+        this.question = "Convertir en décimal : " + binaryStr;
+        // Stocker la bonne réponse en base 10
+        this.bonneReponse = value;
+        // Diffuser la question à tous les joueurs
+        this.EnvoyerResultatDiff();
+    }
 });
